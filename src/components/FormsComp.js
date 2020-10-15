@@ -7,17 +7,21 @@ const FormComp = () => {
   });
 
   const handleInputChange = (event) => {
-    console.log(event.target.value);
     setData({
       ...data,
       [event.target.name]: [event.target.value],
     });
   };
 
+  const sendData = (event) => {
+    event.preventDefault();
+    console.log(data.name + " - " + data.lastName);
+  };
+
   return (
     <Fragment>
       <h1>Form</h1>
-      <form className="row">
+      <form className="row" onSubmit={sendData}>
         <div className="col-md-3">
           <input
             placeholder="Name"
@@ -42,6 +46,10 @@ const FormComp = () => {
           </button>
         </div>
       </form>
+      <h3>
+        {" "}
+        {data.name} - {data.lastName}{" "}
+      </h3>
     </Fragment>
   );
 };
